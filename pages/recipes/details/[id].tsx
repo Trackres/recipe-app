@@ -5,13 +5,13 @@ import {
     Table,
     Thead,
     Tbody,
-    Tfoot,
     Tr,
     Th,
-    Td,
     TableCaption,
     TableContainer,
 } from '@chakra-ui/react';
+import { useState } from 'react';
+import { TableRow } from '../../../components/TableRow/TableRow';
 import { RecipeDetailsService } from '../../../services';
 import { Recipe } from '../../../types';
 
@@ -22,7 +22,7 @@ type RecipeDetailsProps = {
 };
 
 const RecipeDetails = ({ recipeDetails }: RecipeDetailsProps) => {
-    console.log(recipeDetails);
+    const [recipe, setRecipe] = useState<Recipe>(recipeDetails.recipe);
     return (
         <Box>
             <Stack
@@ -37,12 +37,12 @@ const RecipeDetails = ({ recipeDetails }: RecipeDetailsProps) => {
                     color={'gray.600'}
                     textAlign={'center'}
                 >
-                    Recipes Details - {recipeDetails.recipe.label}
+                    Recipes Details - {recipe.label}
                 </Text>
-                <TableContainer maxWidth={'full'} overflowWrap={'break-word'}>
+                <TableContainer maxWidth={'full'} whiteSpace={'pre-line'}>
                     <Table variant="simple">
                         <TableCaption>
-                            Details of {recipeDetails.recipe.label} recipe.
+                            Details of {recipe.label} recipe.
                         </TableCaption>
                         <Thead>
                             <Tr>
@@ -51,23 +51,16 @@ const RecipeDetails = ({ recipeDetails }: RecipeDetailsProps) => {
                             </Tr>
                         </Thead>
                         <Tbody>
-                            {Object.entries(recipeDetails.recipe).map(
-                                ([key, value]) => {
-                                    return (
-                                        <Tr>
-                                            <Td>{key}</Td>
-                                            <Td>{JSON.stringify(value)}</Td>
-                                        </Tr>
-                                    );
-                                }
-                            )}
+                            {Object.entries(recipe).map(([key, value]) => {
+                                return (
+                                    <TableRow
+                                        key={key}
+                                        detail={key}
+                                        value={value}
+                                    />
+                                );
+                            })}
                         </Tbody>
-                        <Tfoot>
-                            <Tr>
-                                <Th>Detail</Th>
-                                <Th>value</Th>
-                            </Tr>
-                        </Tfoot>
                     </Table>
                 </TableContainer>
             </Stack>

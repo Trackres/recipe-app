@@ -6,21 +6,6 @@ import Link from 'next/link';
 import Select from 'react-select';
 import { RecipeService } from '../../services';
 
-type RecipeSearchProps = {
-    initialSearchResults: {
-        from: number;
-        to: number;
-        count: number;
-        _links: {
-            next: {
-                href: string;
-                title: string;
-            };
-        };
-        hits: Array<RecipeSearchResult>;
-    };
-};
-
 const diets = [
     {
         label: 'balanced',
@@ -71,13 +56,11 @@ const mealTypes = [
     },
 ];
 
-const RecipeSearch = ({ initialSearchResults }: RecipeSearchProps) => {
-    const [moreRecipesUrl, setMoreRecipesUrl] = useState(
-        initialSearchResults ? initialSearchResults._links.next.href : ''
-    );
-    const [searchResults, setSearchResults] = useState(
-        initialSearchResults ? initialSearchResults.hits : []
-    );
+const RecipeSearch = () => {
+    const [moreRecipesUrl, setMoreRecipesUrl] = useState<string>('');
+    const [searchResults, setSearchResults] = useState<
+        Array<RecipeSearchResult>
+    >([]);
     const [ingredientName, setIngredientName] = useState<string>('');
     const [diet, setDiet] = useState<string[]>([]);
     const [mealType, setMealType] = useState<string[]>([]);
@@ -99,7 +82,7 @@ const RecipeSearch = ({ initialSearchResults }: RecipeSearchProps) => {
         setMoreRecipesUrl(data._links);
     };
     return (
-        <Box>
+        <Box minH={'89vh'}>
             <Flex
                 margin={15}
                 padding={15}
@@ -189,6 +172,7 @@ const RecipeSearch = ({ initialSearchResults }: RecipeSearchProps) => {
                     onClick={() => {
                         getRecipesByUrl(moreRecipesUrl);
                     }}
+                    disabled={moreRecipesUrl === '' ? true : false}
                     mr={10}
                     w={'200px'}
                     bg={'blue.400'}

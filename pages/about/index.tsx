@@ -1,23 +1,17 @@
 import type { NextPage } from 'next';
-import { Box, Stack, Text, SimpleGrid } from '@chakra-ui/react';
+import { Box, Stack, Text, UnorderedList, ListItem } from '@chakra-ui/react';
 
 const Home: NextPage = () => {
     const AboutLinksArray = [
         {
-            title: 'Search',
-            description:
-                'Write below name of the ingredient or simply click button to navigate to search.',
-            href: '/recipes/',
+            title: 'Recipe Search API',
+            description: 'API providing search of recipes',
+            href: 'https://api.edamam.com/api/recipes/v2',
         },
         {
-            title: 'Recipes Details',
-            description: 'Provide recipe id to follow directly to details.',
-            href: '/recipes/details/',
-        },
-        {
-            title: 'About',
-            description: 'Click below to find source of recipes.',
-            href: '/about/',
+            title: 'Recipe Details API',
+            description: 'API with recipe details',
+            href: 'https://api.edamam.com/api/recipes/v2/{id}',
         },
     ];
     return (
@@ -36,31 +30,16 @@ const Home: NextPage = () => {
                 >
                     About
                 </Text>
-                <Text
-                    fontSize={{ base: '2xl', md: '3xl' }}
-                    fontWeight={'normal'}
-                    textAlign={'center'}
-                    color={'gray.600'}
-                    maxW={'50%'}
-                >
-                    Cooking often requires good recipes to make delicious food.
-                    <br />
-                    Below links will direct you to search engine, where you can
-                    find recipes filtering by certain ingredients, get more
-                    details about recipes and get information about source of
-                    those recipes.
-                </Text>
-                {/* <SimpleGrid
-                    columns={{ base: 1, lg: 3 }}
-                    row={{ base: HomeLinksArray.length, lg: 1 }}
-                    spacing={{ base: 2, lg: 10 }}
-                >
-                    {HomeLinksArray.map((homeLink) => {
+                <UnorderedList>
+                    {AboutLinksArray.map((aboutLinks) => {
                         return (
-                            
+                            <ListItem key={aboutLinks.title}>
+                                {aboutLinks.title} - {aboutLinks.description} -{' '}
+                                {aboutLinks.href}
+                            </ListItem>
                         );
                     })}
-                </SimpleGrid> */}
+                </UnorderedList>
             </Stack>
         </Box>
     );

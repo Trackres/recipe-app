@@ -4,7 +4,6 @@ import {
     Text,
     Stack,
     Button,
-    Input,
     Flex,
     Spacer,
 } from '@chakra-ui/react';
@@ -14,8 +13,6 @@ type HomeLinkProps = {
     title: string;
     description?: string;
     buttonTitle: string;
-    input?: boolean;
-    inputPlaceholder?: string;
     href: string;
 };
 
@@ -23,8 +20,6 @@ const HomeLink = ({
     title,
     description,
     buttonTitle,
-    input,
-    inputPlaceholder,
     href,
 }: HomeLinkProps) => {
     return (
@@ -61,12 +56,6 @@ const HomeLink = ({
                 <Box bg={'gray.50'} px={6} py={10}>
                     <Flex minH={'220px'} direction="column">
                         <Text textAlign={'center'}>{description}</Text>
-                        <Spacer />
-                        {input !== undefined &&
-                        input !== null &&
-                        input === true ? (
-                            <Input placeholder={inputPlaceholder} />
-                        ) : null}
                         <Spacer />
                         <Link href={href}>
                             <Button

@@ -7,25 +7,14 @@ const Home: NextPage = () => {
         {
             title: 'Search',
             description:
-                'Write below name of the ingredient or simply click button to navigate to search.',
+                'Click button to navigate to search.',
             buttonTitle: 'Search recipes',
-            input: true,
-            inputPlaceholder: 'Write ingredient name here',
             href: '/recipes/',
         },
         {
-            title: 'Recipes Details',
-            description: 'Provide recipe id to follow directly to details.',
-            buttonTitle: 'Show details',
-            input: true,
-            inputPlaceholder: 'Write id name here',
-            href: '/recipes/details/',
-        },
-        {
             title: 'About',
-            description: 'Click below to find source of recipes.',
+            description: 'Click below to find source of recipes and used libraries in building this application.',
             buttonTitle: 'Click here!',
-            input: false,
             href: '/about/',
         },
     ];
@@ -60,7 +49,7 @@ const Home: NextPage = () => {
                     those recipes.
                 </Text>
                 <SimpleGrid
-                    columns={{ base: 1, lg: 3 }}
+                    columns={{ base: 1, lg: 2 }}
                     row={{ base: HomeLinksArray.length, lg: 1 }}
                     spacing={{ base: 2, lg: 10 }}
                 >
@@ -71,8 +60,6 @@ const Home: NextPage = () => {
                                 title={homeLink.title}
                                 description={homeLink.description}
                                 buttonTitle={homeLink.buttonTitle}
-                                input={homeLink.input}
-                                inputPlaceholder={homeLink.inputPlaceholder}
                                 href={homeLink.href}
                             />
                         );

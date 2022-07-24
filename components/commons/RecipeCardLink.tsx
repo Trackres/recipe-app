@@ -17,17 +17,11 @@ type RecipeCardLinkProps = {
     href: string;
 };
 
-const RecipeCardLink = ({
-    label,
-    image,
-    href,
-}: RecipeCardLinkProps) => {
-
+const RecipeCardLink = ({ label, image, href }: RecipeCardLinkProps) => {
     const getIdFromUrl = () => {
         let url = new URL(href);
         return url.pathname.substring(url.pathname.lastIndexOf('/') + 1);
-    }
-
+    };
 
     return (
         <Center py={6}>
@@ -62,9 +56,9 @@ const RecipeCardLink = ({
 
                 <Box bg={'gray.50'} px={6} py={10}>
                     <Flex minH={'220px'} direction="column">
-                        <Image src={image} fallback={<Spinner/>} />
+                        <Image src={image} fallback={<Spinner />} />
                         <Spacer />
-                        <Link href={'/recipes/details/'+getIdFromUrl()}>
+                        <Link href={'/recipes/details/' + getIdFromUrl()}>
                             <Button
                                 mt={10}
                                 w={'full'}

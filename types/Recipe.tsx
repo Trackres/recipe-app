@@ -1,9 +1,9 @@
 export type Recipe = {
     label: string;
     image: string;
-    calories: number;
+    calories: string;
     mealType: string;
-    dietLabels: Array<string>;
+    dietLabels: string[];
     uri: string;
 
 };
